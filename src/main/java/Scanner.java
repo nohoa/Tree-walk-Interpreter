@@ -17,7 +17,7 @@ public class Scanner {
         while(current < source.length()){
             scanToken();
         }
-        tokens.add(new Token(Token.TokenType.EOF,"","EOF",line));
+        tokens.add(new Token(Token.TokenType.EOF,"EOF","",line));
         return tokens;
     }
 
