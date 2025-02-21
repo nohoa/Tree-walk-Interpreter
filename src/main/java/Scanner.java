@@ -17,17 +17,17 @@ public class Scanner {
         while(current < source.length()){
             scanToken();
         }
-        tokens.add(new Token(Token.TokenType.EOF,"EOF","",line));
+        tokens.add(new Token(Token.TokenType.EOF,"","EOF",line));
         return tokens;
     }
 
     private  void scanToken(){
         char c = source.charAt(current ++);
             if(c == '('){
-                addToken(Token.TokenType.LEFT_PAREN,"LEFT_PAREN","(");
+                addToken(Token.TokenType.LEFT_PAREN,"(","LEFT_PAREN");
             }
             else if( c == ')'){
-                addToken(Token.TokenType.RIGHT_PAREN,"RIGHT_PAREN",")");
+                addToken(Token.TokenType.RIGHT_PAREN,")","RIGHT_PAREN");
             }
             //case '(': addToken(TokenType.LEFT_PAREN,"LEFT_PAREN","("); break;
             //case ')': addToken(TokenType.RIGHT_PAREN,"RIGHT_PAREN",")"); break;
