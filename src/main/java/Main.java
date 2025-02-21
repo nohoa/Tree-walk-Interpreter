@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 public class Main {
   public static void main(String[] args) {
@@ -27,13 +28,16 @@ public class Main {
       System.err.println("Error reading file: " + e.getMessage());
       System.exit(1);
     }
-
     // Uncomment this block to pass the first stage
-    // 
-    // if (fileContents.length() > 0) {
-    //   throw new RuntimeException("Scanner not implemented");
-    // } else {
-    //   System.out.println("EOF  null"); // Placeholder, remove this line when implementing the scanner
-    // }
+     if (fileContents.length() > 0) {
+       throw new RuntimeException("Scanner not implemented");
+     } else {
+       Scanner loxScanner = new Scanner(fileContents) ;
+       List<String> scanAll = loxScanner.scanToken();
+       // Placeholder, remove this line when implementing the scanner
+       for (String scan : scanAll){
+         System.out.println(scan);
+       }
+     }
   }
 }
