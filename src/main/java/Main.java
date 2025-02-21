@@ -29,15 +29,12 @@ public class Main {
       System.exit(1);
     }
     // Uncomment this block to pass the first stage
-     if (fileContents.length() > 0) {
-       throw new RuntimeException("Scanner not implemented");
-     } else {
+
        Scanner loxScanner = new Scanner(fileContents) ;
-       List<String> scanAll = loxScanner.scanToken();
+       List<Token> scanAll = loxScanner.scanTokens();
        // Placeholder, remove this line when implementing the scanner
-       for (String scan : scanAll){
-         System.out.println(scan);
+       for (Token scan : scanAll){
+         System.out.println(scan.getName() + " "+scan.getVisual()+" null");
        }
-     }
   }
 }
