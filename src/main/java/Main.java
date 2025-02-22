@@ -33,8 +33,11 @@ public class Main {
       String display = scan.toString();
       if(display.charAt(0) == '['){
         error = true;
+        System.err.println(display);
       }
-      System.out.println(display);
+      else {
+        System.out.println(display);
+      }
     }
     if(error) System.exit(65);
   }
