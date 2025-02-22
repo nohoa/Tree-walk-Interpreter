@@ -28,8 +28,14 @@ public class Main {
     Scanner loxScanner = new Scanner(fileContents);
     List<Token> scanAll = loxScanner.scanTokens();
     // Placeholder, remove this line when implementing the scanner
+    boolean error = false ;
     for (Token scan : scanAll) {
-      System.out.println(scan.toString());
+      String display = scan.toString();
+      if(display.charAt(0) == '['){
+        error = true;
+      }
+      System.out.println(display);
     }
+    if(error) System.exit(65);
   }
 }
