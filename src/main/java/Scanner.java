@@ -40,6 +40,9 @@ public class Scanner {
         else if(c == '+'){
             addToken(TokenType.PLUS,"PLUS");
         }
+        else if(c == '-'){
+            addToken(TokenType.MINUS,"MINUS");
+        }
         // case '(': addToken(TokenType.LEFT_PAREN,"LEFT_PAREN","("); break;
         // case ')': addToken(TokenType.RIGHT_PAREN,"RIGHT_PAREN",")"); break;
     }
