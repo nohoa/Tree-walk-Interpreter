@@ -9,6 +9,7 @@ public class Scanner {
     Scanner(String souce) { this.source = souce; }
     List<Token> scanTokens() {
         while (current < source.length()) {
+            start = current;
             scanToken();
         }
         tokens.add(new Token(TokenType.EOF, "EOF", "", line));
@@ -17,21 +18,36 @@ public class Scanner {
     private void scanToken() {
         char c = source.charAt(current++);
         if (c == '(') {
-            addToken(TokenType.LEFT_PAREN, "(", "LEFT_PAREN");
+            addToken(TokenType.LEFT_PAREN, "LEFT_PAREN");
         } else if (c == ')') {
-            addToken(TokenType.RIGHT_PAREN, ")", "RIGHT_PAREN");
+            addToken(TokenType.RIGHT_PAREN, "RIGHT_PAREN");
         }
         else if(c == '{'){
-            addToken(TokenType.LEFT_BRACE, "{", "LEFT_BRACE");
+            addToken(TokenType.LEFT_BRACE, "LEFT_BRACE");
         }
         else if(c == '}'){
-            addToken(TokenType.RIGHT_BRACE, "}", "RIGHT_BRACE");
+            addToken(TokenType.RIGHT_BRACE, "RIGHT_BRACE");
+        }
+        else if(c == '*'){
+            addToken(TokenType.STAR,"STAR");
+        }
+        else if(c =='.'){
+            addToken(TokenType.DOT,"DOT");
+        }
+        else if(c == ','){
+            addToken(TokenType.COMMA,"COMMA");
+        }
+        else if(c == '+'){
+            addToken(TokenType.PLUS,"PLUS");
         }
         // case '(': addToken(TokenType.LEFT_PAREN,"LEFT_PAREN","("); break;
         // case ')': addToken(TokenType.RIGHT_PAREN,"RIGHT_PAREN",")"); break;
     }
-    private void addToken(TokenType token, String visual, String name) {
+    private void addToken(TokenType token, String name) {
         String text = source.substring(start, current);
-        tokens.add(new Token(token, name, visual, line));
+        tokens.add(new Token(token, name, text, line));
+    }
+    private boolean isEnd(){
+        return (current >= source.length());
     }
 }
