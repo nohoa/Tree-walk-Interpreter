@@ -12,4 +12,12 @@ public class Token {
     }
     public String getName() { return name; }
     public String getVisual() { return visual; }
+
+    public String toString() {
+        String ans = name + " " + visual ;
+        if(type != TokenType.ERROR){
+             ans += " null";
+        }
+        return ans;
+    }
 }

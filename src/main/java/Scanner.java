@@ -46,6 +46,9 @@ public class Scanner {
         else if(c == ';'){
             addToken(TokenType.SEMICOLON,"SEMICOLON");
         }
+        else {
+            addToken(TokenType.ERROR,"[line 1] Error: Unexpected character:");
+        }
         // case '(': addToken(TokenType.LEFT_PAREN,"LEFT_PAREN","("); break;
         // case ')': addToken(TokenType.RIGHT_PAREN,"RIGHT_PAREN",")"); break;
     }

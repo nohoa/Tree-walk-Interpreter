@@ -29,7 +29,7 @@ public class Main {
     List<Token> scanAll = loxScanner.scanTokens();
     // Placeholder, remove this line when implementing the scanner
     for (Token scan : scanAll) {
-      System.out.println(scan.getName() + " " + scan.getVisual() + " null");
+      System.out.println(scan.toString());
     }
   }
 }
