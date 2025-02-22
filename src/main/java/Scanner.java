@@ -43,6 +43,9 @@ public class Scanner {
         else if(c == '-'){
             addToken(TokenType.MINUS,"MINUS");
         }
+        else if(c == ';'){
+            addToken(TokenType.SEMICOLON,"SEMICOLON");
+        }
         // case '(': addToken(TokenType.LEFT_PAREN,"LEFT_PAREN","("); break;
         // case ')': addToken(TokenType.RIGHT_PAREN,"RIGHT_PAREN",")"); break;
     }
