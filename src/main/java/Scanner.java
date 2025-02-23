@@ -43,8 +43,16 @@ public class Scanner {
         else if(c == '-'){
             addToken(TokenType.MINUS,"MINUS");
         }
-        else if(c == ';'){
-            addToken(TokenType.SEMICOLON,"SEMICOLON");
+        else if(c == ';') {
+            addToken(TokenType.SEMICOLON, "SEMICOLON");
+        }
+        else if(c == '='){
+            if(match('=')){
+                addToken(TokenType.EQUAL_EQUAL,"EQUAL_EQUAL");
+            }
+            else {
+                addToken(TokenType.EQUAL,"EQUAL");
+            }
         }
         else {
             addToken(TokenType.ERROR,"[line 1] Error: Unexpected character:");
@@ -58,5 +66,13 @@ public class Scanner {
     }
     private boolean isEnd(){
         return (current >= source.length());
+    }
+
+    private boolean match(char expected){
+        if(isEnd()) return false;
+        if(source.charAt(current) != expected) return false ;
+
+        current ++ ;
+        return true ;
     }
 }
