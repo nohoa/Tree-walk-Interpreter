@@ -8,7 +8,13 @@ public class Scanner {
     private int line = 1;
     private String current_string  = "";
     private  Boolean terminated_string = true ;
-    Scanner(String souce) { this.source = souce; }
+    private String number_value = "";
+    int count_dot = 0 ;
+
+    Scanner(String souce) {
+        this.source = souce;
+    }
+
     List<Token> scanTokens() {
         while (current < source.length()) {
             start = current;
@@ -17,6 +23,7 @@ public class Scanner {
         tokens.add(new Token(TokenType.EOF, "EOF", "", line));
         return tokens;
     }
+
     private void scanToken() {
         char c = source.charAt(current++);
         char startStr = '"';
@@ -117,10 +124,37 @@ public class Scanner {
         else if(c == '\n'){
             line ++;
         }
+        else if(c == '.'){
+                addToken(TokenType.DOT,"DOT");
+         }
+        else if(c >= '0' && c <= '9'){
+                while(!isEnd() && c  >= '0' && c <='9'){
+                    number_value += c;
+                    c = source.charAt(current++);
+                }
+                if(c == '.'){
+                    if(source.charAt(current +1) < '0' || source.charAt(current+1) >'9'){
+                        addToken(TokenType.NUMBER,"NUMBER");
+                    }
+                    else {
+                        number_value += c;
+                        current ++;
+                        while(!isEnd() && c  >= '0' && c <='9'){
+                            number_value += c;
+                            c = source.charAt(current++);
+                        }
+                        addToken(TokenType.NUMBER,"NUMBER");
+                    }
+                }
+                else {
+                    addToken(TokenType.NUMBER,"NUMBER");
+                }
+         }
         else {
             String message = "[line " + line + "] Error: Unexpected character:";
             addToken(TokenType.ERROR, message);
         }
+
         // case '(': addToken(TokenType.LEFT_PAREN,"LEFT_PAREN","("); break;
         // case ')': addToken(TokenType.RIGHT_PAREN,"RIGHT_PAREN",")"); break;
     }
