@@ -86,11 +86,15 @@ public class Scanner {
                 addToken(TokenType.SLASH,"SLASH");
             }
         }
-        else if(c == ' ' || c == '\t' || c == '\n'){
+        else if(c == ' ' || c == '\t'){
             ;
         }
+        else if(c == '\n'){
+            line ++;
+        }
         else {
-            addToken(TokenType.ERROR,"[line 1] Error: Unexpected character:");
+            String message = "[line " + line + "] Error: Unexpected character:";
+            addToken(TokenType.ERROR,message);
         }
         // case '(': addToken(TokenType.LEFT_PAREN,"LEFT_PAREN","("); break;
         // case ')': addToken(TokenType.RIGHT_PAREN,"RIGHT_PAREN",")"); break;
