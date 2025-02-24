@@ -136,7 +136,6 @@ public class Scanner {
                     c = source.charAt(current);
                 }
                 if(c == '.'){
-                    current -- ;
                    // System.out.println("here");
                     if(current +1 >= source.length() || source.charAt(current +1) < '0' || source.charAt(current+1) >'9'){
                         addToken(TokenType.NUMBER,"NUMBER");
