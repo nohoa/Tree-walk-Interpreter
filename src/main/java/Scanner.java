@@ -177,7 +177,7 @@ public class Scanner {
                 break;
 
             case TokenType.NUMBER:
-                String current = text;
+                current = text;
                 text += " ";
                 text += current ;
                 text += ".0";
