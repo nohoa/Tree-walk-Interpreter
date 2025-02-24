@@ -80,17 +80,11 @@ public class Scanner {
         }
         else if(c == '/'){
             if(match('/')){
-                current ++;
+                current  = source.length();
             }
             else {
                 addToken(TokenType.SLASH,"SLASH");
             }
-        }
-        else if(c >='a' && c <='z'){
-            current ++;
-        }
-        else if(c >= 'A' && c <= 'Z'){
-            current ++;
         }
         else {
             addToken(TokenType.ERROR,"[line 1] Error: Unexpected character:");
