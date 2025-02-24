@@ -7,7 +7,7 @@ public class Scanner {
     private int current = 0;
     private int line = 1;
     private String current_string  = "";
-    private  Boolean terminated_string = false ;
+    private  Boolean terminated_string = true ;
     Scanner(String souce) { this.source = souce; }
     List<Token> scanTokens() {
         while (current < source.length()) {
@@ -97,6 +97,7 @@ public class Scanner {
             ;
         }
         else if(c == startStr){
+            terminated_string = false ;
             current_string += c;
             c = source.charAt(current);
             current_string += c;
