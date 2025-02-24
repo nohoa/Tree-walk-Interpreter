@@ -17,6 +17,7 @@ public class Scanner {
     }
     private void scanToken() {
         char c = source.charAt(current++);
+        //System.out.println("Character is :" + c);
         if (c == '(') {
             addToken(TokenType.LEFT_PAREN, "LEFT_PAREN");
         } else if (c == ')') {
@@ -80,7 +81,10 @@ public class Scanner {
         }
         else if(c == '/'){
             if(match('/')){
-                current  = source.length();
+                while(c != '\n'){
+                    c = source.charAt(current++);
+                }
+                line ++ ;
             }
             else {
                 addToken(TokenType.SLASH,"SLASH");
