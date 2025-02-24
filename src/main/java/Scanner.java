@@ -62,6 +62,22 @@ public class Scanner {
                 addToken(TokenType.BANG,"BANG");
             }
         }
+        else if(c == '>'){
+            if(match('=')){
+                addToken(TokenType.GREATER_EQUAL,"GREATER_EQUAL");
+            }
+            else {
+                addToken(TokenType.GREATER,"GREATER");
+            }
+        }
+        else if(c == '<'){
+            if(match('=')){
+                addToken(TokenType.LESS_EQUAL,"LESS_EQUAL");
+            }
+            else {
+                addToken(TokenType.LESS,"LESS");
+            }
+        }
         else {
             addToken(TokenType.ERROR,"[line 1] Error: Unexpected character:");
         }
