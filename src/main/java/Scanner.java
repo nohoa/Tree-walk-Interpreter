@@ -106,7 +106,7 @@ public class Scanner {
                 if(c == startStr) terminated_string = true ;
             }
             if(terminated_string == true){
-                addToken(TokenType.STRING,"String");
+                addToken(TokenType.STRING,"STRING");
             }
             else {
                 String message = "[line " + line + "] Error: Unterminated string.";
