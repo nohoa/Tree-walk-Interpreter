@@ -81,7 +81,7 @@ public class Scanner {
         }
         else if(c == '/'){
             if(match('/')){
-                while(c != '\n'){
+                while(current < source.length() && c != '\n'){
                     c = source.charAt(current++);
                 }
                 line ++ ;
