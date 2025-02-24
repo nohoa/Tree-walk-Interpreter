@@ -171,8 +171,9 @@ public class Scanner {
                 break;
 
             case  TokenType.FLOAT:
+                String current = text;
                 text += " ";
-                text += text;
+                text += current;
                 break;
 
             case TokenType.NUMBER:
