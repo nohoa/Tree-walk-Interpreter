@@ -78,6 +78,20 @@ public class Scanner {
                 addToken(TokenType.LESS,"LESS");
             }
         }
+        else if(c == '/'){
+            if(match('/')){
+                current ++;
+            }
+            else {
+                addToken(TokenType.SLASH,"SLASH");
+            }
+        }
+        else if(c >='a' && c <='z'){
+            current ++;
+        }
+        else if(c >= 'A' && c <= 'Z'){
+            current ++;
+        }
         else {
             addToken(TokenType.ERROR,"[line 1] Error: Unexpected character:");
         }
