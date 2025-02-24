@@ -54,6 +54,14 @@ public class Scanner {
                 addToken(TokenType.EQUAL,"EQUAL");
             }
         }
+        else if(c == '!'){
+            if(match('=')){
+                addToken(TokenType.BANG_EQUAL,"BANG_EQUAL");
+            }
+            else {
+                addToken(TokenType.BANG,"BANG");
+            }
+        }
         else {
             addToken(TokenType.ERROR,"[line 1] Error: Unexpected character:");
         }
