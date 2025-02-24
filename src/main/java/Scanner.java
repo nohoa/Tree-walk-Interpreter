@@ -6,6 +6,8 @@ public class Scanner {
     private int start = 0;
     private int current = 0;
     private int line = 1;
+    private String current_string  = "";
+    private  Boolean terminated_string = false ;
     Scanner(String souce) { this.source = souce; }
     List<Token> scanTokens() {
         while (current < source.length()) {
@@ -17,8 +19,9 @@ public class Scanner {
     }
     private void scanToken() {
         char c = source.charAt(current++);
+        char startStr = '"';
         //System.out.println("Character is :" + c);
-        if (c == '(') {
+         if (c == '(') {
             addToken(TokenType.LEFT_PAREN, "LEFT_PAREN");
         } else if (c == ')') {
             addToken(TokenType.RIGHT_PAREN, "RIGHT_PAREN");
@@ -93,12 +96,29 @@ public class Scanner {
         else if(c == ' ' || c == '\t'){
             ;
         }
+        else if(c == startStr){
+            current_string += c;
+            c = source.charAt(current);
+            current_string += c;
+            while(isEnd() == false && c != startStr){
+                c = source.charAt(current ++);
+                current_string += c ;
+                if(c == startStr) terminated_string = true ;
+            }
+            if(terminated_string == true){
+                addToken(TokenType.STRING,"String");
+            }
+            else {
+                String message = "[line " + line + "] Error: Unterminated string.";
+                addToken(TokenType.ERROR_STRING, message);
+            }
+        }
         else if(c == '\n'){
             line ++;
         }
         else {
             String message = "[line " + line + "] Error: Unexpected character:";
-            addToken(TokenType.ERROR,message);
+            addToken(TokenType.ERROR, message);
         }
         // case '(': addToken(TokenType.LEFT_PAREN,"LEFT_PAREN","("); break;
         // case ')': addToken(TokenType.RIGHT_PAREN,"RIGHT_PAREN",")"); break;

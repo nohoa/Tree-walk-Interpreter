@@ -42,5 +42,6 @@ enum TokenType {
     VAR,
     WHILE,
     EOF,
-    ERROR
+    ERROR,
+    ERROR_STRING;
 }

@@ -14,9 +14,13 @@ public class Token {
     public String getVisual() { return visual; }
 
     public String toString() {
-        String ans = name + " " + visual ;
-        if(type != TokenType.ERROR){
-             ans += " null";
+        String ans = name  ;
+        if(type != TokenType.ERROR_STRING){
+            ans += " ";
+            ans += visual;
+            if(type != TokenType.ERROR){
+                ans += " null";
+            }
         }
         return ans;
     }
