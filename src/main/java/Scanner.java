@@ -128,22 +128,25 @@ public class Scanner {
                 addToken(TokenType.DOT,"DOT");
          }
         else if(c >= '0' && c <= '9'){
+            //number_value += c;
                 while(!isEnd() && c  >= '0' && c <='9'){
-                    number_value += c;
                     c = source.charAt(current++);
                 }
                 if(c == '.'){
-                    if(source.charAt(current +1) < '0' || source.charAt(current+1) >'9'){
+                    current -- ;
+                   // System.out.println("here");
+                    if(current +1 >= source.length() || source.charAt(current +1) < '0' || source.charAt(current+1) >'9'){
                         addToken(TokenType.NUMBER,"NUMBER");
                     }
                     else {
-                        number_value += c;
+                      //  System.out.println("here");
                         current ++;
+                        c = source.charAt(current);
                         while(!isEnd() && c  >= '0' && c <='9'){
-                            number_value += c;
                             c = source.charAt(current++);
                         }
-                        addToken(TokenType.NUMBER,"NUMBER");
+                        current -- ;
+                        addToken(TokenType.FLOAT,"NUMBER");
                     }
                 }
                 else {
@@ -160,9 +163,22 @@ public class Scanner {
     }
     private void addToken(TokenType token, String name) {
         String text = source.substring(start, current);
-        if(token == TokenType.STRING){
-            text += " ";
-            text += source.substring(start+1,current-1);
+        switch (token) {
+            case TokenType.STRING:
+                text += " ";
+                text += source.substring(start+1,current-1);
+                break;
+
+            case  TokenType.FLOAT:
+                text += " ";
+                text += text;
+                break;
+
+            case TokenType.NUMBER:
+                text += " ";
+                text += text ;
+                text += ".0";
+                break;
         }
         tokens.add(new Token(token, name, text, line));
     }

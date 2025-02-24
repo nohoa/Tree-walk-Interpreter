@@ -24,6 +24,7 @@ enum TokenType {
     IDENTIFIER,
     STRING,
     NUMBER,
+    FLOAT,
     // Keywords.
     AND,
     CLASS,

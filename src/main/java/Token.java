@@ -18,7 +18,8 @@ public class Token {
         if(type != TokenType.ERROR_STRING){
             ans += " ";
             ans += visual;
-            if(type != TokenType.ERROR && type != TokenType.STRING){
+            if(type != TokenType.ERROR && type != TokenType.STRING && type != TokenType.NUMBER
+             && type != TokenType.FLOAT){
                 ans += " null";
             }
         }
