@@ -143,9 +143,10 @@ public class Scanner {
                         current ++;
                         c = source.charAt(current);
                         while(!isEnd() && c  >= '0' && c <='9'){
-                            c = source.charAt(current++);
+                            current ++ ;
+                            if(isEnd()) break;
+                            c = source.charAt(current);
                         }
-                        current -- ;
                         addToken(TokenType.FLOAT,"NUMBER");
                     }
                 }
