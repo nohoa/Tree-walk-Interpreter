@@ -87,7 +87,7 @@ public class Scanner {
             }
         }
         else if(c == ' ' || c == '\t' || c == '\n'){
-            current ++ ;
+            ;
         }
         else {
             addToken(TokenType.ERROR,"[line 1] Error: Unexpected character:");
