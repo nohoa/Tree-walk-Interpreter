@@ -129,8 +129,11 @@ public class Scanner {
          }
         else if(c >= '0' && c <= '9'){
             //number_value += c;
-                while(!isEnd() && c  >= '0' && c <='9'){
-                    c = source.charAt(current++);
+             current -- ;
+                while(c  >= '0' && c <='9'){
+                    current ++;
+                    if(isEnd()) break;
+                    c = source.charAt(current);
                 }
                 if(c == '.'){
                     current -- ;
@@ -151,6 +154,8 @@ public class Scanner {
                     }
                 }
                 else {
+                    //current --;
+                   // System.out.println("here");
                     addToken(TokenType.NUMBER,"NUMBER");
                 }
          }
