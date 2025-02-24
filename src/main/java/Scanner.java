@@ -174,6 +174,11 @@ public class Scanner {
                 String current = text;
                 text += " ";
                 text += current;
+                int id = text.length()-1;
+                while(id > 0 && text.charAt(id) == '0') id --;
+                text =text.substring(0,id+1);
+                if(text.charAt(text.length()-1) =='.') text += '0';
+                //System.out.println(text);
                 break;
 
             case TokenType.NUMBER:
