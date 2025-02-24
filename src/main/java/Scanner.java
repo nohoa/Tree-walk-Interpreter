@@ -125,6 +125,10 @@ public class Scanner {
     }
     private void addToken(TokenType token, String name) {
         String text = source.substring(start, current);
+        if(token == TokenType.STRING){
+            text += " ";
+            text += source.substring(start+1,current-1);
+        }
         tokens.add(new Token(token, name, text, line));
     }
     private boolean isEnd(){
