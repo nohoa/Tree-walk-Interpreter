@@ -158,6 +158,16 @@ public class Scanner {
                     addToken(TokenType.NUMBER,"NUMBER");
                 }
          }
+        else if(isAlpha(c)){
+            current --;
+            while(current < source.length() && c != ' ' && c!= '\t' && c != '\n'){
+                current ++ ;
+                if(isEnd()) break;
+                c = source.charAt(current);
+            }
+
+            addToken(TokenType.IDENTIFIER,"IDENTIFIER");
+         }
         else {
             String message = "[line " + line + "] Error: Unexpected character:";
             addToken(TokenType.ERROR, message);
@@ -205,4 +215,13 @@ public class Scanner {
         current ++ ;
         return true ;
     }
+    private boolean isAlpha(char c) {
+        return (c >= 'a' && c <= 'z') ||
+                (c >= 'A' && c <= 'Z') ||
+                c == '_';
+    }
+    private boolean isDigit(char c) {
+        return c >= '0' && c <= '9';
+    }
+
 }
