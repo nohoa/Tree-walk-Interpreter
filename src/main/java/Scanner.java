@@ -160,7 +160,7 @@ public class Scanner {
          }
         else if(isAlpha(c)){
             current --;
-            while(current < source.length() && c != ' ' && c!= '\t' && c != '\n'){
+            while(current < source.length() && (isAlpha(c)|| isDigit(c))){
                 current ++ ;
                 if(isEnd()) break;
                 c = source.charAt(current);
