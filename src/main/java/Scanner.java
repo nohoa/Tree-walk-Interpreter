@@ -187,8 +187,8 @@ public class Scanner {
                 if(isEnd()) break;
                 c = source.charAt(current);
             }
-            if(keywords.containsKey(source.substring(start,current).toLowerCase())){
-                String key = source.substring(start,current).toLowerCase();
+            if(keywords.containsKey(source.substring(start,current))){
+                String key = source.substring(start,current);
                 TokenType type = keywords.get(key);
                 addToken(type,key.toUpperCase());
             }
