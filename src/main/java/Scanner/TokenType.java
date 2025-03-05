@@ -1,4 +1,6 @@
-enum TokenType {
+package Scanner;
+
+public enum TokenType {
     // Single-character tokens.
     LEFT_PAREN,
     RIGHT_PAREN,

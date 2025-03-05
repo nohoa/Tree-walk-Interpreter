@@ -1,5 +1,7 @@
+package Scanner;
+
 public class Token {
-    final TokenType type;
+    public final TokenType type;
     final String name;
     final String visual;
     final int line;

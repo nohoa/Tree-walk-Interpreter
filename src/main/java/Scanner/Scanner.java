@@ -1,3 +1,5 @@
+package Scanner;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,11 +35,11 @@ public class Scanner {
     }
 
 
-    Scanner(String souce) {
+    public Scanner(String souce) {
         this.source = souce;
     }
 
-    List<Token> scanTokens() {
+    public List<Token> scanTokens() {
         while (current < source.length()) {
             start = current;
             scanToken();
@@ -210,7 +212,7 @@ public class Scanner {
                 text += source.substring(start+1,current-1);
                 break;
 
-            case  TokenType.FLOAT:
+            case TokenType.FLOAT:
                 String current = text;
                 text += " ";
                 text += current;
