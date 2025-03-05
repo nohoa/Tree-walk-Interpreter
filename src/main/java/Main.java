@@ -1,5 +1,6 @@
 import Parser.AstPrinter;
 import Parser.Expr;
+import Parser.Parser;
 import Scanner.Scanner;
 
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class Main {
     }
     String command = args[0];
     String filename = args[1];
-    if (!command.equals("tokenize")) {
+    if (!command.equals("tokenize") && !command.equals("parse")) {
       System.err.println("Unknown command: " + command);
       System.exit(1);
     }
@@ -33,28 +34,38 @@ public class Main {
     // Uncomment this block to pass the first stage
     Scanner loxScanner = new Scanner(fileContents);
     List<Token> scanAll = loxScanner.scanTokens();
-    Expr expression = new Expr.Binary(
-            new Expr.Unary(
-                    new Token(TokenType.MINUS, "-", null, 1),
-                    new Expr.Literal(123)),
-            new Token(TokenType.STAR, "*", null, 1),
-            new Expr.Grouping(
-                    new Expr.Literal(45.67)));
-    AstPrinter printer = new AstPrinter();
-    //this will call method print of AstPrinter Class
-    System.out.println(printer.print(expression));
+   // else {
     // Placeholder, remove this line when implementing the scanner
-    boolean error = false ;
-    for (Token scan : scanAll) {
-      String display = scan.toString();
-      if(display.charAt(0) == '['){
-        error = true;
-        System.err.println(display);
+    if (command.equals("tokenize")) {
+      boolean error = false;
+      for (Token scan : scanAll) {
+        String display = scan.toString();
+        if (display.charAt(0) == '[') {
+          error = true;
+          System.err.println(display);
+        } else {
+          System.out.println(display);
+        }
       }
-      else {
-        System.out.println(display);
-      }
+      if (error) System.exit(65);
     }
-    if(error) System.exit(65);
+    if (command.equals("parse")) {
+      //System.out.println("here");
+//      Expr expression = new Expr.Binary(
+//              new Expr.Unary(
+//                      new Token(TokenType.MINUS, "-", null, 1),
+//                      new Expr.Literal(123)),
+//              new Token(TokenType.STAR, "*", null, 1),
+//              new Expr.Grouping(
+//                      new Expr.Literal(45.67)));
+//      AstPrinter printer = new AstPrinter();
+//      //this will call method print of AstPrinter Class
+//      System.out.println(printer.print(expression));
+      Parser parser = new Parser(scanAll);
+      Expr expression = parser.parse();
+
+      System.out.println(new AstPrinter().print(expression));
+    }
+  //}
   }
 }
