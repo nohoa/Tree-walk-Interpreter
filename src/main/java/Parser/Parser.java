@@ -25,7 +25,7 @@ public class Parser {
         if (match(TRUE)) return new Expr.Literal(true);
         if (match(NIL)) return new Expr.Literal(null);
 
-        if(match(NUMBER,STRING,FLOAT)){
+        if(match(NUMBER,FLOAT)){
             String all_value = previous().getVisual();
             String literal = "";
             int id = all_value.length()-1;
@@ -37,6 +37,21 @@ public class Parser {
                 literal += all_value.charAt(i);
             }
             //System.ou
+            return new Expr.Literal(literal);
+        }
+        else if(match(STRING)){
+            String all_value = previous().getVisual();
+            String literal = "";
+            int id = all_value.length()-1;
+            char string_end = '"';
+            while(all_value.charAt(id) != string_end) {
+                //literal += all_value.charAt(id);
+                id -= 1;
+            }
+            for(int i = id+2 ;i < all_value.length();i ++) {
+                literal += all_value.charAt(i);
+            }
+            //System.out.println(all_value.charAt(id));
             return new Expr.Literal(literal);
         }
         return expr;
