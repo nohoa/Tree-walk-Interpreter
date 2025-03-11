@@ -230,6 +230,7 @@ public class Scanner {
                 text += ".0";
                 break;
         }
+        //System.out.println(name);
         tokens.add(new Token(token, name, text, line));
     }
     private boolean isEnd(){
