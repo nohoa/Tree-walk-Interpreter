@@ -25,7 +25,7 @@ public class Parser {
         if (match(TRUE)) return new Expr.Literal(true);
         if (match(NIL)) return new Expr.Literal(null);
 
-        if(match(NUMBER,STRING)){
+        if(match(NUMBER,STRING,FLOAT)){
             String all_value = previous().getVisual();
             String literal = "";
             int id = all_value.length()-1;
